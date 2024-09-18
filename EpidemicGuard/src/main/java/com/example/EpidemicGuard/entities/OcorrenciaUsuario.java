@@ -11,6 +11,7 @@ public class OcorrenciaUsuario {
     private String cep;
 
     public OcorrenciaUsuario(int id, String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
+        this.id = id;
         this.enderecoOcorrencia = enderecoOcorrencia;
         this.moderado = moderado;
         this.logradouro = logradouro;
