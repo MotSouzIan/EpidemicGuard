@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface Iadministrador {
 
-    public Administrador buscarAdministrador(int id);
+    public Administrador buscarPorId(int id);
 
     public ArrayList<Administrador> buscarTodos();
 

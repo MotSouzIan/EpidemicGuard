@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface Isintoma {
 
-    public Sintoma buscarPorId();
+    public Sintoma buscarPorId(int id);
 
     public ArrayList<Sintoma> buscarTodos();
 

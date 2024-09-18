@@ -40,7 +40,7 @@ public class OcorrenciaUsuario {
         this.enderecoOcorrencia = enderecoOcorrencia;
     }
 
-    public boolean isModerado() {
+    public boolean getModerado() {
         return moderado;
     }
 
