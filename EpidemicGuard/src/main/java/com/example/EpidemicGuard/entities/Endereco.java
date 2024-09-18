@@ -1,13 +1,15 @@
-package com.example.EpidemicGuard.entites;
+package com.example.EpidemicGuard.entities;
 
-public class endereco {
+public class Endereco {
+    private int id;
     private String rua;
     private String bairro;
     private String cidade;
     private String estado;
     private String cep;
 
-    public endereco(String rua, String bairro, String cidade, String estado, String cep) {
+    public Endereco(int id, String rua, String bairro, String cidade, String estado, String cep) {
+        this.id = id;
         this.rua = rua;
         this.bairro = bairro;
         this.cidade = cidade;
@@ -15,8 +17,16 @@ public class endereco {
         this.cep = cep;
     }
 
-    public endereco(){
+    public Endereco(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getRua() {

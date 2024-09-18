@@ -1,6 +1,7 @@
-package com.example.EpidemicGuard.entites;
+package com.example.EpidemicGuard.entities;
 
-public class ocorrenciaUsuario {
+public class OcorrenciaUsuario {
+    private int id;
     private String enderecoOcorrencia;
     private boolean moderado;
     private String logradouro;
@@ -9,7 +10,7 @@ public class ocorrenciaUsuario {
     private String estado;
     private String cep;
 
-    public ocorrenciaUsuario(String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
+    public OcorrenciaUsuario(int id, String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
         this.enderecoOcorrencia = enderecoOcorrencia;
         this.moderado = moderado;
         this.logradouro = logradouro;
@@ -18,8 +19,16 @@ public class ocorrenciaUsuario {
         this.estado = estado;
         this.cep = cep;
     }
-    public ocorrenciaUsuario(){
+    public OcorrenciaUsuario(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEnderecoOcorrencia() {

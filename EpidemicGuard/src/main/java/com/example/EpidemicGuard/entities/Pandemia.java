@@ -1,15 +1,25 @@
-package com.example.EpidemicGuard.entites;
+package com.example.EpidemicGuard.entities;
 
-public class pandemia {
+public class Pandemia {
+    private int id;
     private String nome;
     private String guia;
 
-    public pandemia(String nome, String guia) {
+    public Pandemia(int id, String nome, String guia) {
+        this.id = id;
         this.nome = nome;
         this.guia = guia;
     }
-    public pandemia(){
+    public Pandemia(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {

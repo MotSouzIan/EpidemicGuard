@@ -1,18 +1,28 @@
-package com.example.EpidemicGuard.entites;
+package com.example.EpidemicGuard.entities;
 
-public class administrador {
+public class Administrador {
+    private int id;
     private String nome;
     private String senha;
     private String cpf;
 
-    public administrador(String nome, String senha, String cpf) {
+    public Administrador(int id, String nome, String senha, String cpf) {
+        this.id = id;
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;
     }
 
-    public administrador(){
+    public Administrador(){
 
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
