@@ -1,5 +1,6 @@
 package com.example.EpidemicGuard.facade;
 
+import com.example.EpidemicGuard.applications.PandemiaApplication;
 import com.example.EpidemicGuard.entities.Pandemia;
 import com.example.EpidemicGuard.repositories.PandemiaRepository;
 
@@ -7,25 +8,25 @@ import java.util.ArrayList;
 
 public class PandemiaFacade {
 
-    private final PandemiaRepository pandemiaRepository = new PandemiaRepository();
+    private PandemiaApplication pandemiaApplication;
 
     public Pandemia buscarPorId(int id) {
-        return pandemiaRepository.buscarPorId(id);
+        return pandemiaApplication.buscarPorId(id);
     }
 
     public ArrayList<Pandemia> buscarTodos() {
-        return pandemiaRepository.buscarTodos();
+        return pandemiaApplication.buscarTodos();
     }
 
     public void salvar(int id, String nome, String guia) {
-        pandemiaRepository.salvar(id, nome, guia);
+        pandemiaApplication.salvar(id, nome, guia);
     }
 
     public void atualizar(int id, Pandemia pandemia) {
-        pandemiaRepository.atualizar(id, pandemia);
+        pandemiaApplication.atualizar(id, pandemia);
     }
 
     public void remover(int id) {
-        pandemiaRepository.remover(id);
+        pandemiaApplication.remover(id);
     }
 }

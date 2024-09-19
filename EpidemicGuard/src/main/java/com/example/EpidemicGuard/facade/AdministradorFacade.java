@@ -1,5 +1,6 @@
 package com.example.EpidemicGuard.facade;
 
+import com.example.EpidemicGuard.applications.AdministradorApplication;
 import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.repositories.AdministradorRepository;
 
@@ -7,25 +8,25 @@ import java.util.ArrayList;
 
 public class AdministradorFacade {
 
-    private final AdministradorRepository administradorRepository = new AdministradorRepository();
+    private AdministradorApplication administradorApplication;
 
     public Administrador buscarPorId(int id) {
-        return administradorRepository.buscarPorId(id);
+        return administradorApplication.buscarPorId(id);
     }
 
     public ArrayList<Administrador> buscarTodos() {
-        return administradorRepository.buscarTodos();
+        return administradorApplication.buscarTodos();
     }
 
     public void salvar(int id, String nome, String senha, String cpf) {
-        administradorRepository.salvar(id, nome, senha, cpf);
+        administradorApplication.salvar(id, nome, senha, cpf);
     }
 
     public void atualizar(int id, Administrador admin) {
-        administradorRepository.atualizar(id, admin);
+        administradorApplication.atualizar(id, admin);
     }
 
     public void remover(int id) {
-        administradorRepository.remover(id);
+        administradorApplication.remover(id);
     }
 }

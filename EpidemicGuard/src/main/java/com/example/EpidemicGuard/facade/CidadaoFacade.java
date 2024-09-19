@@ -1,5 +1,6 @@
 package com.example.EpidemicGuard.facade;
 
+import com.example.EpidemicGuard.applications.CidadaoApplication;
 import com.example.EpidemicGuard.entities.Cidadao;
 import com.example.EpidemicGuard.repositories.CidadaoRepository;
 
@@ -8,25 +9,25 @@ import java.util.Date;
 
 public class CidadaoFacade {
 
-    private final CidadaoRepository cidadaoRepository = new CidadaoRepository();
+    private CidadaoApplication cidadaoApplication;
 
     public Cidadao buscarPorId(int id) {
-        return cidadaoRepository.buscarPorId(id);
+        return cidadaoApplication.buscarPorId(id);
     }
 
     public ArrayList<Cidadao> buscarTodos() {
-        return cidadaoRepository.buscarTodas();
+        return cidadaoApplication.buscarTodos();
     }
 
     public void salvar(int id, String nome, String cpf, Date dataNascimento, String genero, String senha) {
-        cidadaoRepository.salvar(id, nome, cpf, dataNascimento, genero, senha);
+        cidadaoApplication.salvar(id, nome, cpf, dataNascimento, genero, senha);
     }
 
     public void atualizar(int id, Cidadao cidadao) {
-        cidadaoRepository.atualizar(id, cidadao);
+        cidadaoApplication.atualizar(id, cidadao);
     }
 
     public void remover(int id) {
-        cidadaoRepository.remover(id);
+        cidadaoApplication.remover(id);
     }
 }
