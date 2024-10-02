@@ -15,4 +15,6 @@ public interface Iadministrador {
     public void atualizar(int id, Administrador administrador);
 
     public void remover(int id);
+
+    public void adicionar(Administrador administrador);
 }

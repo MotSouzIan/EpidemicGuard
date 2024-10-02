@@ -2,9 +2,11 @@ package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.Pandemia;
 import com.example.EpidemicGuard.interfaces.Ipandemia;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class PandemiaRepository implements Ipandemia {
 
     ArrayList<Pandemia> pandemia = new ArrayList<>();
@@ -41,5 +43,10 @@ public class PandemiaRepository implements Ipandemia {
 
         pandemia.removeIf(p -> p.getId() == id);
 
+    }
+
+    @Override
+    public void adicionar(Pandemia pandemia) {
+        this.pandemia.add(pandemia);
     }
 }

@@ -2,6 +2,7 @@ package com.example.EpidemicGuard.interfaces;
 
 import com.example.EpidemicGuard.entities.Endereco;
 
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 public interface Iendereco {
@@ -15,4 +16,6 @@ public interface Iendereco {
     public void atualizar(int id, Endereco endereco);
 
     public void remover(int id);
+
+    public void adicionar(Endereco endereco);
 }

@@ -15,4 +15,6 @@ public interface Isintoma {
     public void atualizar(int id, Sintoma sintoma);
 
     public void remover(int id);
+
+    public void adicionar(Sintoma sintoma);
 }

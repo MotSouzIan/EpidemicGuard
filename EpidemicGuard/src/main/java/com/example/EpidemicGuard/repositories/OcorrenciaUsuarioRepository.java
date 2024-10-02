@@ -2,9 +2,11 @@ package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.OcorrenciaUsuario;
 import com.example.EpidemicGuard.interfaces.IocorrenciaUsuario;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class OcorrenciaUsuarioRepository implements IocorrenciaUsuario {
 
     ArrayList<OcorrenciaUsuario> ocorrenciaUsuario = new ArrayList<>();
@@ -44,5 +46,10 @@ public class OcorrenciaUsuarioRepository implements IocorrenciaUsuario {
     @Override
     public void remover(int id) {
         ocorrenciaUsuario.removeIf(x -> x.getId() == id);
+    }
+
+    @Override
+    public void adicionar(OcorrenciaUsuario ocorrenciaUsuario) {
+        this.ocorrenciaUsuario.add(ocorrenciaUsuario);
     }
 }

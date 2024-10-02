@@ -15,4 +15,6 @@ public interface Ipandemia {
     public void atualizar(int id, Pandemia pandemia);
 
     public void remover(int id);
+
+    public void adicionar(Pandemia pandemia);
 }

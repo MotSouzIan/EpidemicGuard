@@ -2,9 +2,12 @@ package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.interfaces.Iadministrador;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+
+@Repository
 public class AdministradorRepository implements Iadministrador {
 
     ArrayList<Administrador> administrador = new ArrayList<>();
@@ -42,5 +45,10 @@ public class AdministradorRepository implements Iadministrador {
     @Override
     public void remover(int id) {
         administrador.removeIf(admin -> admin.getId() == id);
+    }
+
+    @Override
+    public void adicionar(Administrador administrador) {
+        this.administrador.add(administrador);
     }
 }

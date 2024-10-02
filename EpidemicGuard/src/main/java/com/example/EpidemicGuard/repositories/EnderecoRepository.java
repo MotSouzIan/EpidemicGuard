@@ -2,9 +2,11 @@ package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.Endereco;
 import com.example.EpidemicGuard.interfaces.Iendereco;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 
+@Repository
 public class EnderecoRepository implements Iendereco {
 
     ArrayList<Endereco> endereco = new ArrayList<>();
@@ -42,5 +44,10 @@ public class EnderecoRepository implements Iendereco {
     @Override
     public void remover(int id) {
         endereco.removeIf(e -> e.getId() == id);
+    }
+
+    @Override
+    public void adicionar(Endereco endereco) {
+        this.endereco.add(endereco);
     }
 }

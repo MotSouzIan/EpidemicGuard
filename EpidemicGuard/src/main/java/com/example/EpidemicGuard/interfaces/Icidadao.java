@@ -16,4 +16,6 @@ public interface Icidadao {
     public void atualizar(int id, Cidadao cidadao);
 
     public void remover(int id);
+
+    public void adicionar(Cidadao cidadao);
 }

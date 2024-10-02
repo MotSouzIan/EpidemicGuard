@@ -15,4 +15,6 @@ public interface IocorrenciaUsuario {
     public void atualizar(int id, OcorrenciaUsuario ocorrenciaUsuario);
 
     public void remover(int id);
+
+    public void adicionar(OcorrenciaUsuario ocorrenciaUsuario);
 }
