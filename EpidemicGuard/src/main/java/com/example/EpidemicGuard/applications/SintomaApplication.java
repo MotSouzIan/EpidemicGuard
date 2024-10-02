@@ -1,9 +1,11 @@
 package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.Sintoma;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class SintomaApplication {
 
     private SintomaApplication sintomaApplication;
@@ -31,5 +33,9 @@ public class SintomaApplication {
     public void remover(int id) {
 
         this.sintomaApplication.remover(id);
+    }
+
+    public void adicionar(Sintoma sintoma) {
+        this.sintomaApplication.adicionar(sintoma);
     }
 }

@@ -3,9 +3,11 @@ package com.example.EpidemicGuard.facade;
 import com.example.EpidemicGuard.applications.OcorrenciaUsuarioApplication;
 import com.example.EpidemicGuard.entities.OcorrenciaUsuario;
 import com.example.EpidemicGuard.repositories.OcorrenciaUsuarioRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
+@Component
 public class OcorrenciaUsuarioFacade {
 
     private OcorrenciaUsuarioApplication ocorrenciaUsuarioApplication;
@@ -27,5 +29,9 @@ public class OcorrenciaUsuarioFacade {
 
     public void remover(int id) {
         ocorrenciaUsuarioApplication.remover(id);
+    }
+
+    public void adicionar(OcorrenciaUsuario ocorrenciaUsuario) {
+        ocorrenciaUsuarioApplication.adicionar(ocorrenciaUsuario);
     }
 }

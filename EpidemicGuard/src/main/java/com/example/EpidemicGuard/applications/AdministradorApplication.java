@@ -3,9 +3,11 @@ package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.repositories.AdministradorRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class AdministradorApplication {
 
     private AdministradorRepository administradorRepository;
@@ -39,6 +41,10 @@ public class AdministradorApplication {
     public void remover(int id) {
         this.administradorRepository.remover(id);
 
+    }
+
+    public void adicionar(Administrador administrador) {
+        this.administradorRepository.adicionar(administrador);
     }
 }
 

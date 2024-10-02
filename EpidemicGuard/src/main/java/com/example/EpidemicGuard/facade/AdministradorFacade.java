@@ -31,4 +31,8 @@ public class AdministradorFacade {
     public void remover(int id) {
         administradorApplication.remover(id);
     }
+
+    public void adicionar(Administrador admin) {
+        administradorApplication.adicionar(admin);
+    }
 }

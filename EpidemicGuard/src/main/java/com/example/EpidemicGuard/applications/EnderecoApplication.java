@@ -1,9 +1,11 @@
 package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.Endereco;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service
 public class EnderecoApplication {
 
     private EnderecoApplication enderecoApplication;
@@ -31,5 +33,9 @@ public class EnderecoApplication {
     public void remover(int id) {
 
         this.enderecoApplication.remover(id);
+    }
+
+    public void adicionar(Endereco endereco) {
+        this.enderecoApplication.adicionar(endereco);
     }
 }

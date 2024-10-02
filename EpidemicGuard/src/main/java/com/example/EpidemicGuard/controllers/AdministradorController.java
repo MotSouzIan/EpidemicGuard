@@ -18,6 +18,7 @@ public class AdministradorController {
 
 
     public void inicializarProdutos(){
+        this.administradorFacade.adicionar(new Administrador(1, "David da Silva Oliveira", "123456", "092.998.785.36"));
     }
 
 

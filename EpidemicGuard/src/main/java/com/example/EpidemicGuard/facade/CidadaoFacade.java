@@ -3,10 +3,12 @@ package com.example.EpidemicGuard.facade;
 import com.example.EpidemicGuard.applications.CidadaoApplication;
 import com.example.EpidemicGuard.entities.Cidadao;
 import com.example.EpidemicGuard.repositories.CidadaoRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Date;
 
+@Component
 public class CidadaoFacade {
 
     private CidadaoApplication cidadaoApplication;
@@ -29,5 +31,9 @@ public class CidadaoFacade {
 
     public void remover(int id) {
         cidadaoApplication.remover(id);
+    }
+
+    public void adicionar(Cidadao cidadao) {
+        cidadaoApplication.adicionar(cidadao);
     }
 }
