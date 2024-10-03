@@ -5,38 +5,53 @@ import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.facade.AdministradorFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@RequestMapping("/administrador")
 public class AdministradorController {
-    private AdministradorFacade administradorFacade;
-
-
-    public void inicializarProdutos(){
-        this.administradorFacade.adicionar(new Administrador(1, "David da Silva Oliveira", "123456", "092.998.785.36"));
-    }
-
+    private final AdministradorFacade administradorFacade;
 
     @Autowired
     public AdministradorController(AdministradorFacade administradorFacade) {
         this.administradorFacade = administradorFacade;
-        this.inicializarProdutos();
     }
 
     @GetMapping({"/buscarAdministradores"})
     public ResponseEntity<List<Administrador>> buscarTodos() {
-        ArrayList<Administrador> administradors = this.administradorFacade.buscarTodos();
-        return ResponseEntity.ok(administradors);
+        List<Administrador> administradores = this.administradorFacade.buscarTodos();
+
+        return ResponseEntity.ok(administradores);
     }
 
-    @GetMapping({"buscarAdministrador/{id}"})
+    @GetMapping({"/buscarAdministrador/{id}"})
     public ResponseEntity<Administrador> buscar(@PathVariable int id) {
         Administrador administrador = this.administradorFacade.buscarPorId(id);
+
         return ResponseEntity.ok(administrador);
+    }
+
+    @PostMapping({"/"})
+    public ResponseEntity<Void> salvar(@RequestBody Administrador administrador) {
+        this.administradorFacade.salvar(administrador);
+
+        return ResponseEntity.ok(null);
+    }
+
+    @PutMapping({"/{id}"})
+    public ResponseEntity<Administrador> atualizar(@PathVariable int id, @RequestBody Administrador administrador) {
+        this.administradorFacade.atualizar(id, administrador);
+
+        return ResponseEntity.ok(null);
+    }
+
+    @DeleteMapping({"/{id}"})
+    public ResponseEntity<List<Administrador>> remover(@PathVariable int id) {
+        this.administradorFacade.remover(id);
+
+        return ResponseEntity.ok(null);
     }
 }
