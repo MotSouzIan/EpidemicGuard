@@ -1,54 +1,66 @@
 package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.Administrador;
-import com.example.EpidemicGuard.interfaces.Iadministrador;
+import com.example.EpidemicGuard.interfaces.IAdministrador;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 @Repository
-public class AdministradorRepository implements Iadministrador {
+public class AdministradorRepository implements IAdministrador {
+    private EntityManager entityManager;
 
-    ArrayList<Administrador> administrador = new ArrayList<>();
+
+    @Autowired
+    public AdministradorRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public Administrador buscarPorId(int id) {
-        Administrador adminInDb = administrador.stream().filter(admin -> admin.getId() == id).findFirst().get();
-
-        return adminInDb;
+        return this.entityManager.find(Administrador.class, id);
     }
 
     @Override
-    public ArrayList<Administrador> buscarTodos() {
-
-        return administrador;
+    public List<Administrador> buscarTodos() {
+        return entityManager
+                .createQuery("select s from Administrador s ORDER BY s.nome", Administrador.class)
+                .getResultList();
     }
 
     @Override
-    public void salvar(int id, String nome, String senha, String cpf) {
-
-        Administrador admin = new Administrador(id, nome, senha, cpf);
-        administrador.add(admin);
+    @Transactional
+    public void salvar(Administrador administrador) {
+        this.entityManager.persist(administrador);
     }
 
     @Override
+    @Transactional
     public void atualizar(int id, Administrador administrador) {
-        Administrador adminInDb = buscarPorId(id);
+        Administrador administradorInDb =  this.entityManager.find(Administrador.class, id);
 
-        adminInDb.setNome(administrador.getNome());
-        adminInDb.setSenha(administrador.getSenha());
-        adminInDb.setCpf(administrador.getCpf());
+        administradorInDb.setNome(administrador.getNome());
+        administradorInDb.setCpf(administrador.getCpf());
+        administradorInDb.setSenha(administrador.getSenha());
 
+        this.entityManager.merge(administradorInDb);
     }
 
     @Override
+    @Transactional
     public void remover(int id) {
-        administrador.removeIf(admin -> admin.getId() == id);
-    }
+        Query query = entityManager
+                .createQuery("delete from Administrador s WHERE s.id = :id");
 
-    @Override
-    public void adicionar(Administrador administrador) {
-        this.administrador.add(administrador);
+        query.setParameter("id", id);
+
+        query.executeUpdate();
     }
 }
