@@ -3,36 +3,38 @@ package com.example.EpidemicGuard.facade;
 import com.example.EpidemicGuard.applications.AdministradorApplication;
 import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.repositories.AdministradorRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class AdministradorFacade {
 
-    private AdministradorApplication administradorApplication;
+    private final AdministradorApplication administradorApplication;
+
+    public AdministradorFacade(AdministradorApplication administradorApplication) {
+        this.administradorApplication = administradorApplication;
+    }
 
     public Administrador buscarPorId(int id) {
-        return administradorApplication.buscarPorId(id);
+        return this.administradorApplication.buscarPorId(id);
     }
 
-    public ArrayList<Administrador> buscarTodos() {
-        return administradorApplication.buscarTodos();
+    public List<Administrador> buscarTodos() {
+        return this.administradorApplication.buscarTodos();
     }
 
-    public void salvar(int id, String nome, String senha, String cpf) {
-        administradorApplication.salvar(id, nome, senha, cpf);
+    public void salvar(Administrador administrador) {
+        this.administradorApplication.salvar(administrador);
     }
 
     public void atualizar(int id, Administrador admin) {
-        administradorApplication.atualizar(id, admin);
+        this.administradorApplication.atualizar(id, admin);
     }
 
     public void remover(int id) {
-        administradorApplication.remover(id);
-    }
-
-    public void adicionar(Administrador admin) {
-        administradorApplication.adicionar(admin);
+        this.administradorApplication.remover(id);
     }
 }
