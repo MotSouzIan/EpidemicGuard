@@ -2,8 +2,6 @@ package com.example.EpidemicGuard.facade;
 
 import com.example.EpidemicGuard.applications.AdministradorApplication;
 import com.example.EpidemicGuard.entities.Administrador;
-import com.example.EpidemicGuard.repositories.AdministradorRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;

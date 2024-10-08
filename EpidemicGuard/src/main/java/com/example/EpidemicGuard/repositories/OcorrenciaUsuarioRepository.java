@@ -1,40 +1,49 @@
 package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.OcorrenciaUsuario;
-import com.example.EpidemicGuard.interfaces.IocorrenciaUsuario;
+import com.example.EpidemicGuard.interfaces.IOcorrenciaUsuario;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public class OcorrenciaUsuarioRepository implements IocorrenciaUsuario {
+public class OcorrenciaUsuarioRepository implements IOcorrenciaUsuario {
+    private EntityManager entityManager;
 
-    ArrayList<OcorrenciaUsuario> ocorrenciaUsuario = new ArrayList<>();
+
+    @Autowired
+    public OcorrenciaUsuarioRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public OcorrenciaUsuario buscarPorId(int id) {
-        OcorrenciaUsuario ocoorrenciaInDb = ocorrenciaUsuario.stream().filter(x -> x.getId() == id).findFirst().get();
-
-        return ocoorrenciaInDb;
+        return this.entityManager.find(OcorrenciaUsuario.class, id);
     }
 
     @Override
-    public ArrayList<OcorrenciaUsuario> buscarTodos() {
-        return ocorrenciaUsuario;
+    public List<OcorrenciaUsuario> buscarTodos() {
+        return entityManager
+                .createQuery("select s from OcorrenciaUsuario s ORDER BY s.nome", OcorrenciaUsuario.class)
+                .getResultList();
     }
 
     @Override
-    public void salvar(int id, String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
-
-        OcorrenciaUsuario ocorrenciaInDb = new OcorrenciaUsuario(id, enderecoOcorrencia, moderado, logradouro, bairro, cidade, estado, cep);
-        ocorrenciaUsuario.add(ocorrenciaInDb);
+    @Transactional
+    public void salvar(OcorrenciaUsuario ocorrenciaUsuario) {
+        this.entityManager.persist(ocorrenciaUsuario);
     }
 
     @Override
+    @Transactional
     public void atualizar(int id, OcorrenciaUsuario ocorrenciaUsuario) {
-        OcorrenciaUsuario ocorrenciaUsuarioInDb = buscarPorId(id);
+        OcorrenciaUsuario ocorrenciaUsuarioInDb =  this.entityManager.find(OcorrenciaUsuario.class, id);
 
-        ocorrenciaUsuarioInDb.setEnderecoOcorrencia(ocorrenciaUsuario.getEnderecoOcorrencia());
         ocorrenciaUsuarioInDb.setModerado(ocorrenciaUsuario.getModerado());
         ocorrenciaUsuarioInDb.setLogradouro(ocorrenciaUsuario.getLogradouro());
         ocorrenciaUsuarioInDb.setBairro(ocorrenciaUsuario.getBairro());
@@ -44,12 +53,13 @@ public class OcorrenciaUsuarioRepository implements IocorrenciaUsuario {
     }
 
     @Override
+    @Transactional
     public void remover(int id) {
-        ocorrenciaUsuario.removeIf(x -> x.getId() == id);
-    }
+        Query query = entityManager
+                .createQuery("delete from OcorrenciaUsuario s WHERE s.id = :id");
 
-    @Override
-    public void adicionar(OcorrenciaUsuario ocorrenciaUsuario) {
-        this.ocorrenciaUsuario.add(ocorrenciaUsuario);
+        query.setParameter("id", id);
+
+        query.executeUpdate();
     }
 }

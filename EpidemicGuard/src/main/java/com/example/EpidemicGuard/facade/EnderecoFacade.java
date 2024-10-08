@@ -1,9 +1,7 @@
 package com.example.EpidemicGuard.facade;
 
-import com.example.EpidemicGuard.applications.CidadaoTerceiroApplication;
 import com.example.EpidemicGuard.applications.EnderecoApplication;
 import com.example.EpidemicGuard.entities.Endereco;
-import com.example.EpidemicGuard.repositories.EnderecoRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

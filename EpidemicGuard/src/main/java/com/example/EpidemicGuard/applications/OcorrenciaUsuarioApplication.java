@@ -1,39 +1,40 @@
 package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.OcorrenciaUsuario;
+import com.example.EpidemicGuard.repositories.OcorrenciaUsuarioRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class OcorrenciaUsuarioApplication {
 
-    private OcorrenciaUsuarioApplication ocorrenciaUsuarioApplication;
+    private final OcorrenciaUsuarioRepository ocorrenciaUsuarioRepository;
 
-    public OcorrenciaUsuario buscarPorId(int id) {
-       return this.ocorrenciaUsuarioApplication.buscarPorId(id);
+    @Autowired
+    public OcorrenciaUsuarioApplication(OcorrenciaUsuarioRepository ocorrenciaUsuarioRepository){
+        this.ocorrenciaUsuarioRepository = ocorrenciaUsuarioRepository;
     }
 
-    public ArrayList<OcorrenciaUsuario> buscarTodos() {
-        return this.ocorrenciaUsuarioApplication.buscarTodos();
+    public OcorrenciaUsuario buscarPorId(int id){
+        return this.ocorrenciaUsuarioRepository.buscarPorId(id);
     }
 
-    public void salvar(int id, String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
+    public List<OcorrenciaUsuario> buscarTodos() {
+        return this.ocorrenciaUsuarioRepository.buscarTodos();
+    }
 
-        this.ocorrenciaUsuarioApplication.salvar(id, enderecoOcorrencia, moderado, logradouro, bairro, cidade, estado, cep);
+    public void salvar(OcorrenciaUsuario ocorrenciaUsuario) {
+        this.ocorrenciaUsuarioRepository.salvar(ocorrenciaUsuario);
     }
 
     public void atualizar(int id, OcorrenciaUsuario ocorrenciaUsuario) {
-
-        this.ocorrenciaUsuarioApplication.atualizar(id, ocorrenciaUsuario);
+        this.ocorrenciaUsuarioRepository.atualizar(id, ocorrenciaUsuario);
     }
 
     public void remover(int id) {
-
-       this.ocorrenciaUsuarioApplication.remover(id);
-    }
-
-    public void adicionar(OcorrenciaUsuario ocorrenciaUsuario) {
-        this.ocorrenciaUsuarioApplication.adicionar(ocorrenciaUsuario);
+        this.ocorrenciaUsuarioRepository.remover(id);
     }
 }
+
