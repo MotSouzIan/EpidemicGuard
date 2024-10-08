@@ -1,27 +1,32 @@
 package com.example.EpidemicGuard.facade;
 
+import com.example.EpidemicGuard.applications.CidadaoTerceiroApplication;
 import com.example.EpidemicGuard.applications.EnderecoApplication;
 import com.example.EpidemicGuard.entities.Endereco;
 import com.example.EpidemicGuard.repositories.EnderecoRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class EnderecoFacade {
 
-    private EnderecoApplication enderecoApplication;
+    private final EnderecoApplication enderecoApplication;
+
+    public EnderecoFacade(EnderecoApplication enderecoApplication) {
+        this.enderecoApplication = enderecoApplication;
+    }
 
     public Endereco buscarPorId(int id) {
         return enderecoApplication.buscarPorId(id);
     }
 
-    public ArrayList<Endereco> buscarTodos() {
+    public List<Endereco> buscarTodos() {
         return enderecoApplication.buscarTodos();
     }
 
-    public void salvar(int id, String rua, String bairro, String cidade, String estado, String cep) {
-        enderecoApplication.salvar(id, rua, bairro, cidade, estado, cep);
+    public void salvar(Endereco endereco) {
+        enderecoApplication.salvar(endereco);
     }
 
     public void atualizar(int id, Endereco endereco) {
@@ -30,9 +35,5 @@ public class EnderecoFacade {
 
     public void remover(int id) {
         enderecoApplication.remover(id);
-    }
-
-    public void adicionar(Endereco endereco) {
-        this.enderecoApplication.adicionar(endereco);
     }
 }

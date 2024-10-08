@@ -1,11 +1,9 @@
 package com.example.EpidemicGuard.interfaces;
 
-import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.entities.Cidadao;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Date;
+
 
 
 public interface ICidadao {

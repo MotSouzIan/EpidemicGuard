@@ -2,8 +2,6 @@ package com.example.EpidemicGuard.entities;
 
 import java.util.Date;
 
-
-
 public class Cidadao {
     private int id;
     private String nome;

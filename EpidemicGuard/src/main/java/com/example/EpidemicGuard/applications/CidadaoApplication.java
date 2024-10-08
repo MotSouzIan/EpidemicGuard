@@ -1,13 +1,10 @@
 package com.example.EpidemicGuard.applications;
 
-import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.entities.Cidadao;
-import com.example.EpidemicGuard.repositories.AdministradorRepository;
 import com.example.EpidemicGuard.repositories.CidadaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +14,7 @@ public class CidadaoApplication {
     private CidadaoRepository cidadaoRepository;
 
     @Autowired
-    public CidadaoApplication(AdministradorRepository administradorRepository){
+    public CidadaoApplication(CidadaoRepository cidadaoRepository){
         this.cidadaoRepository = cidadaoRepository;
     }
 

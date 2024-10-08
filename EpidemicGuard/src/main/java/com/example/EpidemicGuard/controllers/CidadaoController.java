@@ -23,9 +23,9 @@ public class CidadaoController {
 
     @GetMapping({"/buscarCidadaos"})
     public ResponseEntity<List<Cidadao>> buscarTodos() {
-        List<Cidadao> administradores = this.cidadaoFacade.buscarTodos();
+        List<Cidadao> cidadaos = this.cidadaoFacade.buscarTodos();
 
-        return ResponseEntity.ok(administradores);
+        return ResponseEntity.ok(cidadaos);
     }
 
     @GetMapping({"/buscarCidadao/{id}"})

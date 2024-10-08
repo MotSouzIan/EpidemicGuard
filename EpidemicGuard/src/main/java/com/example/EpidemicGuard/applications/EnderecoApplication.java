@@ -1,41 +1,39 @@
 package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.Endereco;
+import com.example.EpidemicGuard.repositories.EnderecoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class EnderecoApplication {
 
-    private EnderecoApplication enderecoApplication;
+    private final EnderecoRepository enderecoRepository;
 
-    public Endereco buscarPorId(int id) {
-
-        return this.enderecoApplication.buscarPorId(id);
+    @Autowired
+    public EnderecoApplication(EnderecoRepository enderecoRepository){
+        this.enderecoRepository = enderecoRepository;
     }
 
-    public ArrayList<Endereco> buscarTodos() {
-
-        return this.enderecoApplication.buscarTodos();
+    public Endereco buscarPorId(int id){
+        return this.enderecoRepository.buscarPorId(id);
     }
 
-    public void salvar(int id, String rua, String bairro, String cidade, String estado, String cep) {
+    public List<Endereco> buscarTodos() {
+        return this.enderecoRepository.buscarTodos();
+    }
 
-       this.enderecoApplication.salvar(id, rua, bairro, cidade, estado, cep);
+    public void salvar(Endereco endereco) {
+        this.enderecoRepository.salvar(endereco);
     }
 
     public void atualizar(int id, Endereco endereco) {
-
-        this.enderecoApplication.atualizar(id, endereco);
+        this.enderecoRepository.atualizar(id, endereco);
     }
 
     public void remover(int id) {
-
-        this.enderecoApplication.remover(id);
-    }
-
-    public void adicionar(Endereco endereco) {
-        this.enderecoApplication.adicionar(endereco);
+        this.enderecoRepository.remover(id);
     }
 }

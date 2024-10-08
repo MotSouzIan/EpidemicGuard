@@ -1,42 +1,42 @@
 package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.CidadaoTerceiro;
+import com.example.EpidemicGuard.repositories.CidadaoTerceiroRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class CidadaoTerceiroApplication {
 
-    private CidadaoTerceiroApplication cidadaoTerceiroApplication;
+    private CidadaoTerceiroRepository cidadaoTerceiroRepository;
 
-    public CidadaoTerceiro buscarPorId(int id) {
-
-       return this.cidadaoTerceiroApplication.buscarPorId(id);
+    @Autowired
+    public CidadaoTerceiroApplication(CidadaoTerceiroRepository cidadaoTerceiroRepository){
+        this.cidadaoTerceiroRepository = cidadaoTerceiroRepository;
     }
 
-    public ArrayList<CidadaoTerceiro> buscarTodos() {
 
-        return this.cidadaoTerceiroApplication.buscarTodos();
+    public CidadaoTerceiro buscarPorId(int id){
+        return this.cidadaoTerceiroRepository.buscarPorId(id);
     }
 
-    public void salvar(int id, String nome, String cpf, Date dataNascimento, String genero) {
+    public List<CidadaoTerceiro> buscarTodos() {
+        return this.cidadaoTerceiroRepository.buscarTodos();
+    }
 
-       this.cidadaoTerceiroApplication.salvar(id, nome, cpf, dataNascimento, genero);
+    public void salvar(CidadaoTerceiro cidadaoTerceiro) {
+        this.cidadaoTerceiroRepository.salvar(cidadaoTerceiro);
     }
 
     public void atualizar(int id, CidadaoTerceiro cidadaoTerceiro) {
-
-        this.cidadaoTerceiroApplication.atualizar(id, cidadaoTerceiro);
+        this.cidadaoTerceiroRepository.atualizar(id, cidadaoTerceiro);
     }
 
     public void remover(int id) {
-
-        this.cidadaoTerceiroApplication.remover(id);
-    }
-
-    public void adicionar(CidadaoTerceiro cidadaoTerceiro) {
-        this.cidadaoTerceiroApplication.adicionar(cidadaoTerceiro);
+        this.cidadaoTerceiroRepository.remover(id);
     }
 }

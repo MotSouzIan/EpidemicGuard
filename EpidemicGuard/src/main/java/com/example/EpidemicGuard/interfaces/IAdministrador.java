@@ -2,7 +2,7 @@ package com.example.EpidemicGuard.interfaces;
 
 import com.example.EpidemicGuard.entities.Administrador;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 public interface IAdministrador {

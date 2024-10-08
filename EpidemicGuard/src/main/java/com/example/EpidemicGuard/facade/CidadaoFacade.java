@@ -1,8 +1,6 @@
 package com.example.EpidemicGuard.facade;
 
-import com.example.EpidemicGuard.applications.AdministradorApplication;
 import com.example.EpidemicGuard.applications.CidadaoApplication;
-import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.entities.Cidadao;
 import org.springframework.stereotype.Component;
 

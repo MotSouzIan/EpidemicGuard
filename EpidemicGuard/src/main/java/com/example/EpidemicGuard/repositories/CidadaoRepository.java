@@ -1,8 +1,6 @@
 package com.example.EpidemicGuard.repositories;
 
-import com.example.EpidemicGuard.entities.Administrador;
 import com.example.EpidemicGuard.entities.Cidadao;
-import com.example.EpidemicGuard.interfaces.IAdministrador;
 import com.example.EpidemicGuard.interfaces.ICidadao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
