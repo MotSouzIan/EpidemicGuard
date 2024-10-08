@@ -1,48 +1,62 @@
 package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.Sintoma;
-import com.example.EpidemicGuard.interfaces.Isintoma;
+import com.example.EpidemicGuard.interfaces.ISintoma;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.util.List;
+
 
 @Repository
-public class SintomaRepository implements Isintoma {
+public class SintomaRepository implements ISintoma {
+    private EntityManager entityManager;
 
-    ArrayList<Sintoma> sintoma = new ArrayList<>();
+
+    @Autowired
+    public SintomaRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public Sintoma buscarPorId(int id) {
-        Sintoma sintomaInDb = sintoma.stream().filter(s -> s.getId() == 1).findFirst().get();
-
-        return sintomaInDb;
+        return this.entityManager.find(Sintoma.class, id);
     }
 
     @Override
-    public ArrayList<Sintoma> buscarTodos() {
-        return sintoma;
+    public List<Sintoma> buscarTodos() {
+        return entityManager
+                .createQuery("select s from Sintoma s ORDER BY s.nome", Sintoma.class)
+                .getResultList();
     }
 
     @Override
-    public void salvar(int id, String descricao) {
-        Sintoma sintomaInDb = new Sintoma(id, descricao);
-        sintoma.add(sintomaInDb);
+    @Transactional
+    public void salvar(Sintoma sintoma) {
+        this.entityManager.persist(sintoma);
     }
 
     @Override
+    @Transactional
     public void atualizar(int id, Sintoma sintoma) {
-        Sintoma sintomaInDb = buscarPorId(id);
+        Sintoma sintomaInDb =  this.entityManager.find(Sintoma.class, id);
 
         sintomaInDb.setDescricao(sintoma.getDescricao());
+
+        this.entityManager.merge(sintomaInDb);
     }
 
     @Override
+    @Transactional
     public void remover(int id) {
-        sintoma.removeIf(sintomaInDb -> sintomaInDb.getId() == id);
-    }
+        Query query = entityManager
+                .createQuery("delete from sintoma s WHERE s.id = :id");
 
-    @Override
-    public void adicionar(Sintoma sintoma) {
-        this.sintoma.add(sintoma);
+        query.setParameter("id", id);
+
+        query.executeUpdate();
     }
 }

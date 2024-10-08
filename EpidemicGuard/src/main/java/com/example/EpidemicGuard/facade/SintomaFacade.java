@@ -2,37 +2,36 @@ package com.example.EpidemicGuard.facade;
 
 import com.example.EpidemicGuard.applications.SintomaApplication;
 import com.example.EpidemicGuard.entities.Sintoma;
-import com.example.EpidemicGuard.repositories.SintomaRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class SintomaFacade {
 
-    private SintomaApplication sintomaApplication;
+    private final SintomaApplication sintomaApplication;
+
+    public SintomaFacade(SintomaApplication sintomaApplication) {
+        this.sintomaApplication = sintomaApplication;
+    }
 
     public Sintoma buscarPorId(int id) {
-        return sintomaApplication.buscarPorId(id);
+        return this.sintomaApplication.buscarPorId(id);
     }
 
-    public ArrayList<Sintoma> buscarTodos() {
-        return sintomaApplication.buscarTodos();
+    public List<Sintoma> buscarTodos() {
+        return this.sintomaApplication.buscarTodos();
     }
 
-    public void salvar(int id, String descricao) {
-        sintomaApplication.salvar(id, descricao);
+    public void salvar(Sintoma sintoma) {
+        this.sintomaApplication.salvar(sintoma);
     }
 
     public void atualizar(int id, Sintoma sintoma) {
-        sintomaApplication.atualizar(id, sintoma);
+        this.sintomaApplication.atualizar(id, sintoma);
     }
 
     public void remover(int id) {
-        sintomaApplication.remover(id);
-    }
-
-    public void adicionar(Sintoma sintoma) {
-        sintomaApplication.adicionar(sintoma);
+        this.sintomaApplication.remover(id);
     }
 }
