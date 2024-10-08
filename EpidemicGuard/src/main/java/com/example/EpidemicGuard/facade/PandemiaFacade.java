@@ -2,26 +2,29 @@ package com.example.EpidemicGuard.facade;
 
 import com.example.EpidemicGuard.applications.PandemiaApplication;
 import com.example.EpidemicGuard.entities.Pandemia;
-import com.example.EpidemicGuard.repositories.PandemiaRepository;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class PandemiaFacade {
 
-    private PandemiaApplication pandemiaApplication;
+    private final PandemiaApplication pandemiaApplication;
+
+    public PandemiaFacade(PandemiaApplication pandemiaApplication) {
+        this.pandemiaApplication = pandemiaApplication;
+    }
 
     public Pandemia buscarPorId(int id) {
         return pandemiaApplication.buscarPorId(id);
     }
 
-    public ArrayList<Pandemia> buscarTodos() {
+    public List<Pandemia> buscarTodos() {
         return pandemiaApplication.buscarTodos();
     }
 
-    public void salvar(int id, String nome, String guia) {
-        pandemiaApplication.salvar(id, nome, guia);
+    public void salvar(Pandemia pandemia) {
+        pandemiaApplication.salvar(pandemia);
     }
 
     public void atualizar(int id, Pandemia pandemia) {
@@ -32,7 +35,4 @@ public class PandemiaFacade {
         pandemiaApplication.remover(id);
     }
 
-    public void adicionar(Pandemia pandemia) {
-        pandemiaApplication.adicionar(pandemia);
-    }
 }

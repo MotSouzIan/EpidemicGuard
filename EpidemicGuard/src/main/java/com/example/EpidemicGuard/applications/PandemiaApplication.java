@@ -1,40 +1,40 @@
 package com.example.EpidemicGuard.applications;
 
 import com.example.EpidemicGuard.entities.Pandemia;
+import com.example.EpidemicGuard.repositories.PandemiaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PandemiaApplication {
 
-    private PandemiaApplication pandemiaApplication;
+    private final PandemiaRepository pandemiaRepository;
 
-    public Pandemia buscarPorId(int id) {
-        return this.pandemiaApplication.buscarPorId(id);
+    @Autowired
+    public PandemiaApplication(PandemiaRepository administradorRepository){
+        this.pandemiaRepository = administradorRepository;
     }
 
-    public ArrayList<Pandemia> buscarTodos() {
-
-        return this.pandemiaApplication.buscarTodos();
+    public Pandemia buscarPorId(int id){
+        return this.pandemiaRepository.buscarPorId(id);
     }
 
-    public void salvar(int id, String nome, String guia) {
+    public List<Pandemia> buscarTodos() {
+        return this.pandemiaRepository.buscarTodos();
+    }
 
-        this.pandemiaApplication.salvar(id, nome, guia);
+    public void salvar(Pandemia pandemia) {
+        this.pandemiaRepository.salvar(pandemia);
     }
 
     public void atualizar(int id, Pandemia pandemia) {
-
-        this.pandemiaApplication.atualizar(id, pandemia);
+        this.pandemiaRepository.atualizar(id, pandemia);
     }
 
     public void remover(int id) {
-
-       this.pandemiaApplication.remover(id);
-    }
-
-    public void adicionar(Pandemia pandemia) {
-        this.pandemiaApplication.adicionar(pandemia);
+        this.pandemiaRepository.remover(id);
     }
 }

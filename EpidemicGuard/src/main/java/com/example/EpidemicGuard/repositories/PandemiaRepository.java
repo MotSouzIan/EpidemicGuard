@@ -1,52 +1,62 @@
 package com.example.EpidemicGuard.repositories;
 
 import com.example.EpidemicGuard.entities.Pandemia;
-import com.example.EpidemicGuard.interfaces.Ipandemia;
+import com.example.EpidemicGuard.interfaces.IPandemia;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public class PandemiaRepository implements Ipandemia {
+public class PandemiaRepository implements IPandemia {
+    private EntityManager entityManager;
 
-    ArrayList<Pandemia> pandemia = new ArrayList<>();
+
+    @Autowired
+    public PandemiaRepository(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 
     @Override
     public Pandemia buscarPorId(int id) {
-        Pandemia pandemiaInDb = pandemia.stream().filter(p -> p.getId() == id).findFirst().get();
-
-        return pandemiaInDb;
+        return this.entityManager.find(Pandemia.class, id);
     }
 
     @Override
-    public ArrayList<Pandemia> buscarTodos() {
-        return pandemia;
+    public List<Pandemia> buscarTodos() {
+        return entityManager
+                .createQuery("select s from Pandemia s ORDER BY s.nome", Pandemia.class)
+                .getResultList();
     }
 
     @Override
-    public void salvar(int id, String nome, String guia) {
-        Pandemia pandemiaInDb = new Pandemia(id, nome, guia);
-        pandemia.add(pandemiaInDb);
+    @Transactional
+    public void salvar(Pandemia pandemia) {
+        this.entityManager.persist(pandemia);
     }
 
     @Override
+    @Transactional
     public void atualizar(int id, Pandemia pandemia) {
-        Pandemia pandemiaInDb = buscarPorId(id);
+        Pandemia pandemiaInDb =  this.entityManager.find(Pandemia.class, id);
 
         pandemiaInDb.setNome(pandemia.getNome());
         pandemiaInDb.setGuia(pandemia.getGuia());
 
+        this.entityManager.merge(pandemiaInDb);
     }
 
     @Override
+    @Transactional
     public void remover(int id) {
+        Query query = entityManager
+                .createQuery("delete from Pandemia s WHERE s.id = :id");
 
-        pandemia.removeIf(p -> p.getId() == id);
+        query.setParameter("id", id);
 
-    }
-
-    @Override
-    public void adicionar(Pandemia pandemia) {
-        this.pandemia.add(pandemia);
+        query.executeUpdate();
     }
 }
