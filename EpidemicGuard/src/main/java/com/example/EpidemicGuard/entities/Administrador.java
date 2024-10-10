@@ -1,13 +1,22 @@
 package com.example.EpidemicGuard.entities;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "administrador")
 public class Administrador {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "senha")
     private String senha;
+    @Column(name = "cpf")
     private String cpf;
 
-    public Administrador(int id, String nome, String senha, String cpf) {
-        this.id = id;
+    public Administrador( String nome, String senha, String cpf) {
         this.nome = nome;
         this.senha = senha;
         this.cpf = cpf;

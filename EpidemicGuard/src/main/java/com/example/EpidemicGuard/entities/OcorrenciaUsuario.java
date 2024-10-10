@@ -1,17 +1,32 @@
 package com.example.EpidemicGuard.entities;
 
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "ocorrenciaUsuario")
+
 public class OcorrenciaUsuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
+    @Column(name = "enderecoOcorrencia")
     private String enderecoOcorrencia;
+    @Column(name = "moderado")
     private boolean moderado;
+    @Column(name = "logradouro")
     private String logradouro;
+    @Column(name = "bairro")
     private String bairro;
+    @Column(name = "cidade")
     private String cidade;
+    @Column(name = "estado")
     private String estado;
+    @Column(name = "cep")
     private String cep;
 
-    public OcorrenciaUsuario(int id, String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
-        this.id = id;
+    public OcorrenciaUsuario(String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
         this.enderecoOcorrencia = enderecoOcorrencia;
         this.moderado = moderado;
         this.logradouro = logradouro;
