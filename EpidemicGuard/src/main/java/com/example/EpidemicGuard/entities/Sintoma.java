@@ -2,6 +2,9 @@ package com.example.EpidemicGuard.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "sintoma")
 
@@ -12,6 +15,9 @@ public class Sintoma {
     private int id;
     @Column(name = "descricao")
     private String descricao;
+
+    @OneToMany(mappedBy = "sintoma", cascade = CascadeType.ALL)
+    private List<Pandemia> pandemias = new ArrayList<>();
 
     public Sintoma(String descricao) {
         this.descricao = descricao;

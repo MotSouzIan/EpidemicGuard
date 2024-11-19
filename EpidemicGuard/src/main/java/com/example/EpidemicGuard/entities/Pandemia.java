@@ -2,6 +2,9 @@ package com.example.EpidemicGuard.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "pandemia")
 
@@ -14,6 +17,13 @@ public class Pandemia {
     private String nome;
     @Column(name = "guia")
     private String guia;
+
+    @OneToMany(mappedBy = "pandemia", cascade = CascadeType.ALL)
+    private List<OcorrenciaUsuario> ocorrenciaUsuarios = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "sintoma_id", referencedColumnName = "id")
+    private Sintoma sintoma;
 
     public Pandemia(String nome, String guia) {
         this.nome = nome;

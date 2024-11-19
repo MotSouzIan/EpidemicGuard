@@ -2,7 +2,9 @@ package com.example.EpidemicGuard.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "cidadaoTerceiro")
@@ -20,6 +22,13 @@ public class CidadaoTerceiro {
     private Date dataNascimento;
     @Column(name = "genero")
     private String genero;
+
+    @OneToMany(mappedBy = "cidadaoTerceiro", cascade = CascadeType.ALL)
+    private List<Endereco> enderecos = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "cidadao_id", referencedColumnName = "id")
+    private Cidadao cidadao;
 
     public CidadaoTerceiro(String nome, String cpf, Date dataNascimento, String genero) {
         this.nome = nome;

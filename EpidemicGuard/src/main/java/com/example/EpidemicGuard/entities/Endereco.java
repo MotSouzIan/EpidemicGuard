@@ -22,6 +22,16 @@ public class Endereco {
     @Column(name = "cep")
     private String cep;
 
+    @ManyToOne
+    @JoinColumn(name = "cidadao_id", referencedColumnName = "id")
+    private Cidadao cidadao;
+
+    @ManyToOne
+    @JoinColumn(name = "cidadaoTerceiro_id", referencedColumnName = "id")
+    private CidadaoTerceiro cidadaoTerceiro;
+
+
+
     public Endereco(String rua, String bairro, String cidade, String estado, String cep) {
         this.rua = rua;
         this.bairro = bairro;

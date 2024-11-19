@@ -26,6 +26,18 @@ public class OcorrenciaUsuario {
     @Column(name = "cep")
     private String cep;
 
+    @ManyToOne
+    @JoinColumn(name = "cidadao_id", referencedColumnName = "id")
+    private Cidadao cidadao;
+
+    @ManyToOne
+    @JoinColumn(name = "pandemia_id", referencedColumnName = "id")
+    private Pandemia pandemia;
+
+    @ManyToOne
+    @JoinColumn(name = "administrador_id", referencedColumnName = "id")
+    private Administrador administrador;
+
     public OcorrenciaUsuario(String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
         this.enderecoOcorrencia = enderecoOcorrencia;
         this.moderado = moderado;
