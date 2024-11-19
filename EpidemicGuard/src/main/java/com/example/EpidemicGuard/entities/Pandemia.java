@@ -21,9 +21,8 @@ public class Pandemia {
     @OneToMany(mappedBy = "pandemia", cascade = CascadeType.ALL)
     private List<OcorrenciaUsuario> ocorrenciaUsuarios = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "sintoma_id", referencedColumnName = "id")
-    private Sintoma sintoma;
+    @OneToMany(mappedBy = "pandemia", cascade = CascadeType.ALL)
+    private List<PandemiaSintoma> pandemiaSintomas = new ArrayList<>();
 
     public Pandemia(String nome, String guia) {
         this.nome = nome;

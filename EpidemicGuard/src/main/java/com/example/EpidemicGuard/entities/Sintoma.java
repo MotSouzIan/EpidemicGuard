@@ -17,7 +17,7 @@ public class Sintoma {
     private String descricao;
 
     @OneToMany(mappedBy = "sintoma", cascade = CascadeType.ALL)
-    private List<Pandemia> pandemias = new ArrayList<>();
+    private List<PandemiaSintoma> pandemiaSintomas = new ArrayList<>();
 
     public Sintoma(String descricao) {
         this.descricao = descricao;
