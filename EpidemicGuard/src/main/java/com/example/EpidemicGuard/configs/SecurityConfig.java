@@ -6,6 +6,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.CsrfDsl;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -18,31 +20,15 @@ import org.springframework.security.web.SecurityFilterChain;
 import javax.sql.DataSource;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-    @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
 
-        jdbcUserDetailsManager.setUsersByUsernameQuery("SELECT username, password, enabled FROM user where username = ?");
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
 
-        jdbcUserDetailsManager.setAuthoritiesByUsernameQuery("select username, role from user inner join role on user.id = role.user_id where username = ?");
-
-        return jdbcUserDetailsManager;
+        return httpSecurity
+                .csrf(csrf -> csrf.disable())
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .build();
     }
 
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeHttpRequests(configurer -> {
-            configurer
-
-                    .requestMatchers(HttpMethod.GET, "/api/administrador/**").hasRole("ADMIN")
-                    .requestMatchers("/api/users/**").permitAll();
-        });
-
-        httpSecurity.httpBasic(Customizer.withDefaults());
-
-        httpSecurity.csrf(csrf -> csrf.disable());
-
-        return httpSecurity.build();
-    }
 }
