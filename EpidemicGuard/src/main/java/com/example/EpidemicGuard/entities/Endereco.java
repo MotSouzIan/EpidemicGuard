@@ -11,14 +11,19 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
     @Column(name = "rua")
     private String rua;
+
     @Column(name = "bairro")
     private String bairro;
+
     @Column(name = "cidade")
     private String cidade;
+
     @Column(name = "estado")
     private String estado;
+
     @Column(name = "cep")
     private String cep;
 
@@ -29,7 +34,6 @@ public class Endereco {
     @ManyToOne
     @JoinColumn(name = "cidadaoTerceiro_id", referencedColumnName = "id")
     private CidadaoTerceiro cidadaoTerceiro;
-
 
 
     public Endereco(String rua, String bairro, String cidade, String estado, String cep) {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Endereco")
+@RequestMapping("/endereco/")
 public class EnderecoController {
     private final EnderecoFacade enderecoFacade;
 
@@ -18,35 +18,35 @@ public class EnderecoController {
         this.enderecoFacade = enderecoFacade;
     }
 
-    @GetMapping({"/buscarEnderecos"})
+    @GetMapping()
     public ResponseEntity<List<Endereco>> buscarTodos() {
         List<Endereco> enderecos = this.enderecoFacade.buscarTodos();
 
         return ResponseEntity.ok(enderecos);
     }
 
-    @GetMapping({"/buscarEndereco/{id}"})
+    @GetMapping({"buscarEndereco/{id}"})
     public ResponseEntity<Endereco> buscar(@PathVariable int id) {
         Endereco endereco = this.enderecoFacade.buscarPorId(id);
 
         return ResponseEntity.ok(endereco);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody Endereco endereco) {
         this.enderecoFacade.salvar(endereco);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     public ResponseEntity<Endereco> atualizar(@PathVariable int id, @RequestBody Endereco endereco) {
         this.enderecoFacade.atualizar(id, endereco);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<List<Endereco>> remover(@PathVariable int id) {
         this.enderecoFacade.remover(id);
 

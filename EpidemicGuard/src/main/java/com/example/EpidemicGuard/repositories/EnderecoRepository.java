@@ -31,7 +31,7 @@ public class EnderecoRepository implements IEndereco {
     @Override
     public List<Endereco> buscarTodos() {
         return entityManager
-                .createQuery("select s from Endereco s ORDER BY s.nome", Endereco.class)
+                .createQuery("select s from Endereco s ORDER BY s.rua", Endereco.class)
                 .getResultList();
     }
 

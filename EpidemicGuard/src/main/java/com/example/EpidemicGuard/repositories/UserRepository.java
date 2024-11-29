@@ -1,5 +1,6 @@
-package com.example.EpidemicGuard.user;
+package com.example.EpidemicGuard.repositories;
 
+import com.example.EpidemicGuard.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

@@ -29,7 +29,7 @@ public class SintomaRepository implements ISintoma {
     @Override
     public List<Sintoma> buscarTodos() {
         return entityManager
-                .createQuery("select s from Sintoma s ORDER BY s.nome", Sintoma.class)
+                .createQuery("select s from Sintoma s ORDER BY s.descricao", Sintoma.class)
                 .getResultList();
     }
 
