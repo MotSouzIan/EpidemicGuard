@@ -19,7 +19,7 @@ public class OcorrenciaUsuarioController {
         this.ocorrenciaUsuarioFacade = ocorrenciaUsuarioFacade;
     }
 
-    @GetMapping({"/buscarOcorrenciaUsuarios"})
+    @GetMapping()
     public ResponseEntity<List<OcorrenciaUsuario>> buscarTodos() {
         List<OcorrenciaUsuario> ocorrenciaUsuarios = this.ocorrenciaUsuarioFacade.buscarTodos();
 
@@ -33,21 +33,21 @@ public class OcorrenciaUsuarioController {
         return ResponseEntity.ok(ocorrenciaUsuario);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody OcorrenciaUsuario ocorrenciaUsuario) {
         this.ocorrenciaUsuarioFacade.salvar(ocorrenciaUsuario);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     public ResponseEntity<OcorrenciaUsuario> atualizar(@PathVariable int id, @RequestBody OcorrenciaUsuario ocorrenciaUsuario) {
         this.ocorrenciaUsuarioFacade.atualizar(id, ocorrenciaUsuario);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<List<OcorrenciaUsuario>> remover(@PathVariable int id) {
         this.ocorrenciaUsuarioFacade.remover(id);
 

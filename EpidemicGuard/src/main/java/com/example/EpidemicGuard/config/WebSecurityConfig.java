@@ -32,10 +32,10 @@ public class WebSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(configurer -> {
             configurer
-                    .requestMatchers("/endereco/").hasAnyRole("ADMIN", "CIDADAO")
-                    .requestMatchers("/cidadao/").hasAnyRole("ADMIN", "CIDADAO")
+//                    .requestMatchers("/endereco/").hasAnyRole("ADMIN", "CIDADAO")
+//                    .requestMatchers("/cidadao/").hasAnyRole("ADMIN", "CIDADAO")
 
-                    .requestMatchers("/user").permitAll();
+                    .requestMatchers("/**").permitAll();
         });
 
         httpSecurity.httpBasic(Customizer.withDefaults());

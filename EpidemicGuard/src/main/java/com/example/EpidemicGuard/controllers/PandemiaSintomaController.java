@@ -19,7 +19,7 @@ public class PandemiaSintomaController {
         this.pandemia_sintomaFacade = pandemia_sintomaFacade;
     }
 
-    @GetMapping({"/buscarPandemiasSintomas"})
+    @GetMapping()
     public ResponseEntity<List<PandemiaSintoma>> buscarTodos() {
         List<PandemiaSintoma> pandemias_sintomas = this.pandemia_sintomaFacade.buscarTodos();
 
@@ -33,21 +33,21 @@ public class PandemiaSintomaController {
         return ResponseEntity.ok(pandemia_sintoma);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody PandemiaSintoma pandemia_sintoma) {
         this.pandemia_sintomaFacade.salvar(pandemia_sintoma);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     public ResponseEntity<PandemiaSintoma> atualizar(@PathVariable int id, @RequestBody PandemiaSintoma pandemia_sintoma) {
         this.pandemia_sintomaFacade.atualizar(id, pandemia_sintoma);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<List<PandemiaSintoma>> remover(@PathVariable int id) {
         this.pandemia_sintomaFacade.remover(id);
 

@@ -19,7 +19,7 @@ public class CidadaoTerceiroController {
         this.cidadaoTerceiroFacade = cidadaoTerceiroFacade;
     }
 
-    @GetMapping({"/buscarCidadaosTerceiros"})
+    @GetMapping()
     public ResponseEntity<List<CidadaoTerceiro>> buscarTodos() {
         List<CidadaoTerceiro> cidadaoTerceiros = this.cidadaoTerceiroFacade.buscarTodos();
 
@@ -33,21 +33,21 @@ public class CidadaoTerceiroController {
         return ResponseEntity.ok(cidadaoTerceiro);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody CidadaoTerceiro cidadaoTerceiro) {
         this.cidadaoTerceiroFacade.salvar(cidadaoTerceiro);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     public ResponseEntity<CidadaoTerceiro> atualizar(@PathVariable int id, @RequestBody CidadaoTerceiro cidadaoTerceiro) {
         this.cidadaoTerceiroFacade.atualizar(id, cidadaoTerceiro);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<List<CidadaoTerceiro>> remover(@PathVariable int id) {
         this.cidadaoTerceiroFacade.remover(id);
 

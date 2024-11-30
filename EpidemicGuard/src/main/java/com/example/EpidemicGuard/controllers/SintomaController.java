@@ -18,7 +18,7 @@ public class SintomaController {
         this.sintomaFacade = sintomaFacade;
     }
 
-    @GetMapping({"/buscarSintomas"})
+    @GetMapping()
     public ResponseEntity<List<Sintoma>> buscarTodos() {
         List<Sintoma> sintomas = this.sintomaFacade.buscarTodos();
 
@@ -32,21 +32,21 @@ public class SintomaController {
         return ResponseEntity.ok(sintoma);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody Sintoma sintoma) {
         this.sintomaFacade.salvar(sintoma);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     public ResponseEntity<Sintoma> atualizar(@PathVariable int id, @RequestBody Sintoma sintoma) {
         this.sintomaFacade.atualizar(id, sintoma);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<List<Sintoma>> remover(@PathVariable int id) {
         this.sintomaFacade.remover(id);
 

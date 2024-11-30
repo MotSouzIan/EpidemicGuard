@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cidadao")
+@RequestMapping("/cidadao/")
 
 public class CidadaoController {
     private final CidadaoFacade cidadaoFacade;
@@ -20,35 +20,35 @@ public class CidadaoController {
         this.cidadaoFacade = cidadaoFacade;
     }
 
-    @GetMapping({"/buscarCidadaos"})
+    @GetMapping()
     public ResponseEntity<List<Cidadao>> buscarTodos() {
         List<Cidadao> cidadaos = this.cidadaoFacade.buscarTodos();
 
         return ResponseEntity.ok(cidadaos);
     }
 
-    @GetMapping({"/buscarCidadao/{id}"})
+    @GetMapping("buscarCidadao/{id}")
     public ResponseEntity<Cidadao> buscar(@PathVariable int id) {
         Cidadao cidadao = this.cidadaoFacade.buscarPorId(id);
 
         return ResponseEntity.ok(cidadao);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody Cidadao cidadao) {
         this.cidadaoFacade.salvar(cidadao);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping("{id}")
     public ResponseEntity<Cidadao> atualizar(@PathVariable int id, @RequestBody Cidadao cidadao) {
         this.cidadaoFacade.atualizar(id, cidadao);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping("{id}")
     public ResponseEntity<List<Cidadao>> remover(@PathVariable int id) {
         this.cidadaoFacade.remover(id);
 
