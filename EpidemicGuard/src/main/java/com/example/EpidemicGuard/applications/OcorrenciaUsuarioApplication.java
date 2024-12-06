@@ -36,5 +36,10 @@ public class OcorrenciaUsuarioApplication {
     public void remover(int id) {
         this.ocorrenciaUsuarioRepository.remover(id);
     }
+
+    public List<Object[]> relatorio() {
+        return this.ocorrenciaUsuarioRepository.relatorio();
+    }
+
 }
 

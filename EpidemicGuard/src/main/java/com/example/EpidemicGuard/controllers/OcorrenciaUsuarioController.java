@@ -53,4 +53,9 @@ public class OcorrenciaUsuarioController {
 
         return ResponseEntity.ok(null);
     }
+
+    @GetMapping("/relatorio")
+    public ResponseEntity<List<Object[]>> relatorio() {
+        return ResponseEntity.ok(this.ocorrenciaUsuarioFacade.relatorio());
+    }
 }

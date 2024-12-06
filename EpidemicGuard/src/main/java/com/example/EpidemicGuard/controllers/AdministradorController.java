@@ -33,21 +33,21 @@ public class AdministradorController {
         return ResponseEntity.ok(administrador);
     }
 
-    @PostMapping({"/"})
+    @PostMapping()
     public ResponseEntity<Void> salvar(@RequestBody Administrador administrador) {
         this.administradorFacade.salvar(administrador);
 
         return ResponseEntity.ok(null);
     }
 
-    @PutMapping({"/{id}"})
+    @PutMapping({"{id}"})
     public ResponseEntity<Administrador> atualizar(@PathVariable int id, @RequestBody Administrador administrador) {
         this.administradorFacade.atualizar(id, administrador);
 
         return ResponseEntity.ok(null);
     }
 
-    @DeleteMapping({"/{id}"})
+    @DeleteMapping({"{id}"})
     public ResponseEntity<List<Administrador>> remover(@PathVariable int id) {
         this.administradorFacade.remover(id);
 

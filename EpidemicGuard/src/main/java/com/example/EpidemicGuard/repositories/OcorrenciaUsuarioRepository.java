@@ -29,7 +29,7 @@ public class OcorrenciaUsuarioRepository implements IOcorrenciaUsuario {
     @Override
     public List<OcorrenciaUsuario> buscarTodos() {
         return entityManager
-                .createQuery("select s from OcorrenciaUsuario s ORDER BY s.nome", OcorrenciaUsuario.class)
+                .createQuery("select s from OcorrenciaUsuario s", OcorrenciaUsuario.class)
                 .getResultList();
     }
 
@@ -61,5 +61,31 @@ public class OcorrenciaUsuarioRepository implements IOcorrenciaUsuario {
         query.setParameter("id", id);
 
         query.executeUpdate();
+    }
+
+    public List<Object[]> relatorio() {
+        String sql = """
+            SELECT 
+                bairro, 
+                pandemia_id, 
+                COUNT(*) AS total,
+                CASE 
+                    WHEN COUNT(*) > 20 THEN 'Surto'
+                    WHEN COUNT(*) > 5 THEN 'Epidemia'
+                    WHEN COUNT(*) > 2 THEN 'Endemia'
+                    ELSE 'Normal'
+                END AS grau
+            FROM
+                ocorrencia_usuario
+            WHERE
+                moderado = TRUE
+            GROUP BY 
+                pandemia_id,
+                bairro;
+        """;
+
+        Query query = entityManager.createNativeQuery(sql);
+
+        return query.getResultList();
     }
 }

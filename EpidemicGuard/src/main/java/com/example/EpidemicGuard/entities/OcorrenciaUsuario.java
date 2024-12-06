@@ -3,6 +3,9 @@ package com.example.EpidemicGuard.entities;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "ocorrenciaUsuario")
 
@@ -37,6 +40,7 @@ public class OcorrenciaUsuario {
     @ManyToOne
     @JoinColumn(name = "administrador_id", referencedColumnName = "id")
     private Administrador administrador;
+
 
     public OcorrenciaUsuario(String enderecoOcorrencia, boolean moderado, String logradouro, String bairro, String cidade, String estado, String cep) {
         this.enderecoOcorrencia = enderecoOcorrencia;
@@ -113,5 +117,33 @@ public class OcorrenciaUsuario {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public boolean isModerado() {
+        return moderado;
+    }
+
+    public Cidadao getCidadao() {
+        return cidadao;
+    }
+
+    public void setCidadao(Cidadao cidadao) {
+        this.cidadao = cidadao;
+    }
+
+    public Pandemia getPandemia() {
+        return pandemia;
+    }
+
+    public void setPandemia(Pandemia pandemia) {
+        this.pandemia = pandemia;
+    }
+
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
 }
