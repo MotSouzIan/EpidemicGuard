@@ -11,30 +11,30 @@ import java.util.List;
 @Service
 public class PandemiaSintomaApplication {
 
-    private final PandemiaSintomaRepository pandemia_sintomaRepository;
+    private final PandemiaSintomaRepository pandemiaSintomaRepository;
 
     @Autowired
     public PandemiaSintomaApplication(PandemiaSintomaRepository administradorRepository){
-        this.pandemia_sintomaRepository = administradorRepository;
+        this.pandemiaSintomaRepository = administradorRepository;
     }
 
     public PandemiaSintoma buscarPorId(int id){
-        return this.pandemia_sintomaRepository.buscarPorId(id);
+        return this.pandemiaSintomaRepository.buscarPorId(id);
     }
 
     public List<PandemiaSintoma> buscarTodos() {
-        return this.pandemia_sintomaRepository.buscarTodos();
+        return this.pandemiaSintomaRepository.buscarTodos();
     }
 
-    public void salvar(PandemiaSintoma pandemia_sintoma) {
-        this.pandemia_sintomaRepository.salvar(pandemia_sintoma);
+    public void salvar(PandemiaSintoma pandemiaSintoma) {
+        this.pandemiaSintomaRepository.salvar(pandemiaSintoma);
     }
 
-    public void atualizar(int id, PandemiaSintoma pandemia_sintoma) {
-        this.pandemia_sintomaRepository.atualizar(id, pandemia_sintoma);
+    public void atualizar(int id, PandemiaSintoma pandemiaSintoma) {
+        this.pandemiaSintomaRepository.atualizar(id, pandemiaSintoma);
     }
 
     public void remover(int id) {
-        this.pandemia_sintomaRepository.remover(id);
+        this.pandemiaSintomaRepository.remover(id);
     }
 }

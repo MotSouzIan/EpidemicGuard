@@ -13,9 +13,9 @@ public interface IPandemiaSintoma {
 
     public List<PandemiaSintoma> buscarTodos();
 
-    public void salvar(PandemiaSintoma pandemia_sintoma);
+    public void salvar(PandemiaSintoma pandemiaSintoma);
 
-    public void atualizar(int id, PandemiaSintoma pandemia_sintoma);
+    public void atualizar(int id, PandemiaSintoma pandemiaSintoma);
 
     public void remover(int id);
 }

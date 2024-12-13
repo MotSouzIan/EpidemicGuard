@@ -40,13 +40,13 @@ public class PandemiaSintomaRepository implements IPandemiaSintoma {
 
     @Override
     @Transactional
-    public void atualizar(int id, PandemiaSintoma pandemia_sintoma) {
-        PandemiaSintoma pandemia_sintomaInDb =  this.entityManager.find(PandemiaSintoma.class, id);
+    public void atualizar(int id, PandemiaSintoma pandemiaSintoma) {
+        PandemiaSintoma pandemiaSintomaInDb =  this.entityManager.find(PandemiaSintoma.class, id);
 
-        pandemia_sintomaInDb.setPandemia(pandemia_sintoma.getPandemia());
-        pandemia_sintomaInDb.setSintoma(pandemia_sintoma.getSintoma());
+        pandemiaSintomaInDb.setPandemia(pandemiaSintoma.getPandemia());
+        pandemiaSintomaInDb.setSintoma(pandemiaSintoma.getSintoma());
 
-        this.entityManager.merge(pandemia_sintomaInDb);
+        this.entityManager.merge(pandemiaSintomaInDb);
     }
 
     @Override

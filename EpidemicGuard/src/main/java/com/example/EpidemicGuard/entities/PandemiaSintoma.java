@@ -3,7 +3,7 @@ package com.example.EpidemicGuard.entities;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "pandemia_sintoma")
+@Table(name = "pandemiaSintoma")
 public class PandemiaSintoma {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

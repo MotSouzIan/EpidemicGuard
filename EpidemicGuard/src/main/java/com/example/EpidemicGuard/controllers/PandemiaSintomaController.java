@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Pandemia_sintoma")
+@RequestMapping("/PandemiaSintoma")
 public class PandemiaSintomaController {
     private final PandemiaSintomaFacade pandemia_sintomaFacade;
 
@@ -21,28 +21,28 @@ public class PandemiaSintomaController {
 
     @GetMapping()
     public ResponseEntity<List<PandemiaSintoma>> buscarTodos() {
-        List<PandemiaSintoma> pandemias_sintomas = this.pandemia_sintomaFacade.buscarTodos();
+        List<PandemiaSintoma> pandemiaSintomas = this.pandemia_sintomaFacade.buscarTodos();
 
-        return ResponseEntity.ok(pandemias_sintomas);
+        return ResponseEntity.ok(pandemiaSintomas);
     }
 
     @GetMapping({"/buscarPandemiaSintoma/{id}"})
     public ResponseEntity<PandemiaSintoma> buscar(@PathVariable int id) {
-        PandemiaSintoma pandemia_sintoma = this.pandemia_sintomaFacade.buscarPorId(id);
+        PandemiaSintoma pandemiaSintoma = this.pandemia_sintomaFacade.buscarPorId(id);
 
-        return ResponseEntity.ok(pandemia_sintoma);
+        return ResponseEntity.ok(pandemiaSintoma);
     }
 
     @PostMapping()
-    public ResponseEntity<Void> salvar(@RequestBody PandemiaSintoma pandemia_sintoma) {
-        this.pandemia_sintomaFacade.salvar(pandemia_sintoma);
+    public ResponseEntity<Void> salvar(@RequestBody PandemiaSintoma pandemiaSintoma) {
+        this.pandemia_sintomaFacade.salvar(pandemiaSintoma);
 
         return ResponseEntity.ok(null);
     }
 
     @PutMapping({"{id}"})
-    public ResponseEntity<PandemiaSintoma> atualizar(@PathVariable int id, @RequestBody PandemiaSintoma pandemia_sintoma) {
-        this.pandemia_sintomaFacade.atualizar(id, pandemia_sintoma);
+    public ResponseEntity<PandemiaSintoma> atualizar(@PathVariable int id, @RequestBody PandemiaSintoma pandemiaSintoma) {
+        this.pandemia_sintomaFacade.atualizar(id, pandemiaSintoma);
 
         return ResponseEntity.ok(null);
     }
